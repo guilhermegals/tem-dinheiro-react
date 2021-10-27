@@ -1,1 +1,1 @@
-# tem-dinheiro-react-native
+# tem-dinheiro-react
