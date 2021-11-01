@@ -10,14 +10,14 @@ export const Records = () => {
         return record.type == '1';
     });
     const totalExpenses = expenses.reduce(function (a, b) {
-        return a + parseInt(b['quantity']);
+        return a + parseFloat(b['quantity']);
     }, 0);
 
     const incomes = records.filter(function (record) {
         return record.type != '1';
     });
     const totalIncomes = incomes.reduce(function (a, b) {
-        return a + parseInt(b['quantity']);
+        return a + parseFloat(b['quantity']);
     }, 0);
 
     const total = totalIncomes - totalExpenses;
