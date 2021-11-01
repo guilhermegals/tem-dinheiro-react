@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button, Container } from "reactstrap";
 
+// Componente para edição de um registro
 export const Edit = (props) => {
     const history = useHistory();
     const recordId = props.match.params.id;
@@ -16,6 +17,7 @@ export const Edit = (props) => {
 
     useEffect(() => {
         const recordAux = oldRecords.find(r => r.id === recordId)
+        // Verifica se o elemento atual existe, caso não existe o usuário é redirecionado para a Home
         if(recordAux) setCurrentRecord(recordAux);
         else history.push('/');
     }, [])
@@ -24,10 +26,19 @@ export const Edit = (props) => {
         setCurrentRecord({ ...currentRecord, [e.target.name]: e.target.value });
     }
 
+    // Função para atualização do registro
     const updateRecord = (e) => {
+
+        // Obter todos os registros salvos sem o elemento atual
         const newRecords = oldRecords.filter((r) => r.id !== recordId)
+
+        // Adicionar o elemento atual novamente
         newRecords.push(currentRecord);
+        
+        // Atualizar no banco de dados
         localStorage.setItem('records', JSON.stringify(newRecords));
+
+        // Voltar para a home
         history.push('/');
     };
 

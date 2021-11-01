@@ -2,30 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { ListGroup, ListGroupItem, Button, Container } from "reactstrap";
 
+// Componente para listagem das informações
 export const Records = () => {
+
+    // Obtenção dos registros salvos no banco de dados
     const recordsAux = JSON.parse(localStorage.getItem('records')) || [];
     const [records, setRecords] = useState(recordsAux);
 
+    // Filtragem de todos os gastos
     const expenses = records.filter(function (record) {
         return record.type == '1';
     });
+    // Somatario de todos os gastos
     const totalExpenses = expenses.reduce(function (a, b) {
         return a + parseFloat(b['quantity']);
     }, 0);
 
+    // Filtragem de todos os ganhos
     const incomes = records.filter(function (record) {
         return record.type != '1';
     });
+    // Somatario de todos os ganhos
     const totalIncomes = incomes.reduce(function (a, b) {
         return a + parseFloat(b['quantity']);
     }, 0);
 
+    // Calculo do saldo
     const total = totalIncomes - totalExpenses;
 
+    // Função para remover um registro
     const removeRecord = (record) => {
         setRecords(records.filter((r) => r !== record));
     }
 
+    // Função para obter qual a cor do tipo do registro
     const getColor = (record) => {
         if (record.type === '1') return "lightcoral";
         else return "lightgreen";

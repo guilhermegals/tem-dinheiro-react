@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, NavbarBrand, Container } from "reactstrap";
 
+// Componente para a nav bar
 export const NavBar = () => {
 
     return (

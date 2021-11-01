@@ -7,6 +7,7 @@ import { NavBar } from './components/NavBar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Componente geral da aplicação
 function App() {
   return (
     <div style={{ maxWidth: "60rem", margin: "4rem auto", marginTop: "0rem", padding: "1rem", paddingTop: "0rem" }}>

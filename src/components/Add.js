@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button, Container } from "reactstrap";
 
+// Componente para adição de um novo registro
 export const Add = () => {
+
+    // Definição das propriedades Hooks
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [type, setType] = useState('1');
@@ -10,10 +13,14 @@ export const Add = () => {
 
     const history = useHistory();
 
+    // Função para adicionar o registro
     const addRecord = (e) => {
         e.preventDefault();
 
+        // Obtenção da coleção atual
         var records = JSON.parse(localStorage.getItem('records')) || [];
+
+        // Adição do novo elemento no array
         records.push({
             id: Math.random().toString().replace('0.', ''),
             title: title,
@@ -22,8 +29,10 @@ export const Add = () => {
             quantity: quantity
         });
         
+        // Atualização do array no banco de dados
         localStorage.setItem('records', JSON.stringify(records));
 
+        // Voltar para Home
         history.push("/");
     }
 
